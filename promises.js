@@ -10,6 +10,7 @@ fs.readFile('./data.json', 'utf8')
     console.log(dataObj);
     console.log("Complete");
   })
+    .then(() => readFile("data.json"))
     .catch(err => {
       console.log("Could not complete loading and parsing ");
       throw err;
