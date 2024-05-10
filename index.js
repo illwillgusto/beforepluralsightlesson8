@@ -115,7 +115,7 @@ async function addEmployee() {
   employee.localCurrency = getInput("Local currency (3 letter code): ", isCurrencyCodeValid);
 
   employees.push(employee);
-  await writeData();
+  await writeData(); // this will allow the employee to remain in the list once added
 }
 
 // Search for employees by id
