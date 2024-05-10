@@ -57,8 +57,8 @@ function getInput(promptText, validator, transformer) {
 }
 
 const getNextEmployeeID = () => {
-  const maxID = Math.max(...employees.map(e => e.id)); // enables to return a value for each item within the array, returning the ID 
-  return maxID + 1;
+  const maxID = Math.max(...employees.map(e => e.id)); // enables to return a value for each item within the array, returning the ID
+  return maxID + 1; // the spread syntax is used to return one id
 }
 
 // Validator functions ---------------------------------------------------
