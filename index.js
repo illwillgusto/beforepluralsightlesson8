@@ -24,6 +24,7 @@ const getCurrencyConversionData = async () => {
   if(!response.ok) {
     throw new Error("Cannot fetch currency data.");
   }
+  currencyData = await response.json();
 }
 
 // Loading and writing data to the filesystem ----------------------------
