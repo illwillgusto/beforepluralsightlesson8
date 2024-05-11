@@ -6,7 +6,7 @@ export const loadData = async () => {
   console.log("Loading employees.....");
   try {
     const fileData = await fs.readFile('./data.json');
-    employees = JSON.parse(fileData);
+    return JSON.parse(fileData);
   } catch (err) {
     console.error("Cannot load in employees");
     throw err;
