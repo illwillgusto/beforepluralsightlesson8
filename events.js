@@ -8,4 +8,7 @@ emitter.on('hello', message => {
   console.log(`Event handled: ${message}`);
 });
 
-
+// Emit the event after a 3 second delay
+setTimeout(() => {
+  
+}, 3000);
