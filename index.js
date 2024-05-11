@@ -24,8 +24,8 @@ const logEmployee = (employee) => {
       console.log(`${entry[0]}: ${entry[1]}`);
     }
   });
-  console.log(`Salary USD: ${getSalary(employee.salaryUSD, "USD")}`);
-  console.log(`Local Salary: ${getSalary(employee.salaryUSD, employee.localCurrency)}`);
+  console.log(`Salary USD: ${getSalary(employee.salaryUSD, "USD", currencyData)}`);
+  console.log(`Local Salary: ${getSalary(employee.salaryUSD, employee.localCurrency, currencyData)}`);
 }
 
 function getInput(promptText, validator, transformer) {
