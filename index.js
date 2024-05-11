@@ -12,6 +12,18 @@ let currencyData;
 const getCurrencyConversionData = async () => {
   const myHeaders = new Headers();
 	myHeaders.append('apikey', '0c61820d59c22e2607a9cf4cd41187e3');
+  const options = {
+		method: 'GET',
+		headers: myHeaders,
+		redirect: 'follow',
+	};
+  const result = await fetch(
+		'http://api.exchangeratesapi.io/v1/latest?access_key=0c61820d59c22e2607a9cf4cd41187e3&symbols=USD,AUD,CAD,PLN,MXN&format=1',
+		options
+	);
+  if(!response.ok) {
+    throw new Error("Cannot fetch currency data.");
+  }
 }
 
 // Loading and writing data to the filesystem ----------------------------
