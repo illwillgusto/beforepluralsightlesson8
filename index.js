@@ -17,7 +17,7 @@ const getCurrencyConversionData = async () => {
 		headers: myHeaders,
 		redirect: 'follow',
 	};
-  const result = await fetch(
+  const response = await fetch(
 		'http://api.exchangeratesapi.io/v1/latest?access_key=0c61820d59c22e2607a9cf4cd41187e3&symbols=USD,AUD,CAD,PLN,MXN&format=1',
 		options
 	);
