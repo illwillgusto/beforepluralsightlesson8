@@ -27,6 +27,15 @@ const getCurrencyConversionData = async () => {
   currencyData = await response.json();
 }
 
+const getSalary = (amountUSD, currency) => {
+  const amount = (currency === "USD") ? amountUSD : amountUSD * currencyData.rates[currency];
+  const formatter = Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: currency
+  });
+  return formatter.format(amount);
+}
+
 // Loading and writing data to the filesystem ----------------------------
 
 const loadData = async () => {
