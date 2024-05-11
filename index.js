@@ -3,6 +3,9 @@
 
 import fs from 'node:fs/promises';
 
+// import of chalk
+import chalk from 'chalk';
+
 // Global variables ------------------------------------------------------
 
 let employees = [];
