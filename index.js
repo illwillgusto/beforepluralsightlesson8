@@ -2,6 +2,7 @@
 // Get a free API Key here: https://exchangeratesapi.io/
 
 import { loadData, writeData } from './data.js';
+import { getCurrencyConversionData, getSalary } from './currency.js';
 
 // import of chalk
 import chalk from 'chalk';
