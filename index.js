@@ -6,6 +6,7 @@ import fs from 'node:fs/promises';
 // Global variables ------------------------------------------------------
 
 let employees = [];
+let currencyData;
 
 
 // Loading and writing data to the filesystem ----------------------------
