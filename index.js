@@ -8,6 +8,11 @@ import fs from 'node:fs/promises';
 let employees = [];
 let currencyData;
 
+// Currency data ---------------------------
+const getCurrencyConversionData = async () => {
+  const myHeaders = new Headers();
+	myHeaders.append('apikey', '0c61820d59c22e2607a9cf4cd41187e3');
+}
 
 // Loading and writing data to the filesystem ----------------------------
 
