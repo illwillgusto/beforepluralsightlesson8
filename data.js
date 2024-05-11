@@ -13,7 +13,7 @@ export const loadData = async () => {
   }
 }
 
-export const writeData = async () => {
+export const writeData = async (employees) => {
   console.log("Writing employees.....");
   try {
     await fs.writeFile('./data.json', JSON.stringify(employees, null, 2));
