@@ -17,7 +17,7 @@ export const getCurrencyConversionData = async () => {
 	return await response.json();
 };
 
-export const getSalary = (amountUSD, currency) => {
+export const getSalary = (amountUSD, currency, currencyData) => {
 	const amount =
 		currency === 'USD' ? amountUSD : amountUSD * currencyData.rates[currency];
 	const formatter = Intl.NumberFormat('en-US', {
