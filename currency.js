@@ -1,5 +1,5 @@
 // Currency data ---------------------------
-const getCurrencyConversionData = async () => {
+export const getCurrencyConversionData = async () => {
 	const myHeaders = new Headers();
 	myHeaders.append('apikey', '0c61820d59c22e2607a9cf4cd41187e3');
 	const options = {
@@ -17,7 +17,7 @@ const getCurrencyConversionData = async () => {
 	currencyData = await response.json();
 };
 
-const getSalary = (amountUSD, currency) => {
+export const getSalary = (amountUSD, currency) => {
 	const amount =
 		currency === 'USD' ? amountUSD : amountUSD * currencyData.rates[currency];
 	const formatter = Intl.NumberFormat('en-US', {
