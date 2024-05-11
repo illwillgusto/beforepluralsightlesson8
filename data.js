@@ -2,7 +2,7 @@ import fs from 'node:fs/promises';
 
 // Loading and writing data to the filesystem ----------------------------
 
-const loadData = async () => {
+export const loadData = async () => {
   console.log("Loading employees.....");
   try {
     const fileData = await fs.readFile('./data.json');
@@ -13,7 +13,7 @@ const loadData = async () => {
   }
 }
 
-const writeData = async () => {
+export const writeData = async () => {
   console.log("Writing employees.....");
   try {
     await fs.writeFile('./data.json', JSON.stringify(employees, null, 2));
