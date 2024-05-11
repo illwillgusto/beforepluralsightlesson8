@@ -157,7 +157,7 @@ function searchById() {
     console.log("");
     logEmployee(result);
   } else {
-    console.log("No results...");
+    console.log(`${chalk.red.bold("No results...")}`);
   }
 }
 
