@@ -7,10 +7,13 @@ const requestOptions = {
 	redirect: 'follow',
 };
 
-fetch(
-	'http://api.exchangeratesapi.io/v1/latest?access_key=0c61820d59c22e2607a9cf4cd41187e3&symbols=USD,AUD,CAD,PLN,MXN&format=1',
-	requestOptions
-)
-	.then((response) => response.text())
-	.then((result) => console.log(result))
-	.catch((error) => console.log('error', error));
+  try {
+    const result = await fetch(
+			'http://api.exchangeratesapi.io/v1/latest?access_key=0c61820d59c22e2607a9cf4cd41187e3&symbols=USD,AUD,CAD,PLN,MXN&format=1',
+			requestOptions);
+      const resultObj = await result.json();
+      console.log(JSON.stringify(resultObj, null, 2));
+  } catch (err) {
+    console.error(`Could not fetch currency data`);
+    throw err;
+  }
