@@ -1,4 +1,9 @@
 {
-  "extends": "airbnb"
+  "extends": "airbnb",
+  "rules": {
+    "no-console":"off",
+    "eslint-plugin-import/extensions": "off",
+    "no-param-reassign":"off",
+    "no-underscore-dangle":"off"
+  }
 }
-
