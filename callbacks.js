@@ -1,15 +1,15 @@
 // Import Node Filesystem Module (the callback version)
-import fs from "node:fs";
+import fs from 'node:fs';
 
 fs.readFile('./data.json', 'utf8', (err, data) => {
-  if(err) {
+  if (err) {
     console.log('Error reading the file');
     throw err;
   }
   try {
     const dataObj = JSON.parse(data);
     console.log(dataObj);
-    console.log("Complete");
+    console.log('Complete');
   } catch (error) {
     console.error('Cannot parse JSON from file');
   }
