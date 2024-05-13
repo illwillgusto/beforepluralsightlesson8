@@ -14,11 +14,11 @@ export const getCurrencyConversionData = async () => {
   if (!response.ok) {
     throw new Error('Cannot fetch currency data.');
   }
-  return await response.json();
+  return response.json();
 };
 
 export const getSalary = (amountUSD, currency, currencyData) => {
-  const amount =		currency === 'USD' ? amountUSD : amountUSD * currencyData.rates[currency];
+  const amount = currency === 'USD' ? amountUSD : amountUSD * currencyData.rates[currency];
   const formatter = Intl.NumberFormat('en-US', {
     style: 'currency',
     currency,

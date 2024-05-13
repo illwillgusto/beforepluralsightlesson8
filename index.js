@@ -20,8 +20,16 @@ const logEmployee = (employee) => {
       console.log(`${entry[0]}: ${entry[1]}`);
     }
   });
-  console.log(`Salary USD: ${getSalary(employee.salaryUSD, 'USD', currencyData)}`);
-  console.log(`Local Salary: ${getSalary(employee.salaryUSD, employee.localCurrency, currencyData)}`);
+  console.log(
+    `Salary USD: ${getSalary(employee.salaryUSD, 'USD', currencyData)}`,
+  );
+  console.log(
+    `Local Salary: ${getSalary(
+      employee.salaryUSD,
+      employee.localCurrency,
+      currencyData,
+    )}`,
+  );
 };
 
 function getInput(promptText, validator, transformer) {
@@ -43,16 +51,14 @@ const getNextEmployeeID = () => {
 
 // Validator functions ---------------------------------------------------
 
-const isCurrencyCodeValid = function (code) {
+const isCurrencyCodeValid = (code) => {
   const currencyCodes = Object.keys(currencyData.rates);
-  return (currencyCodes.indexOf(code) > -1);
+  return currencyCodes.indexOf(code) > -1;
 };
 
-const isStringInputValid = (input) => (!!(input));
+const isStringInputValid = (input) => !!input;
 
-const isBooleanInputValid = function (input) {
-  return (input === 'yes' || input === 'no');
-};
+const isBooleanInputValid = (input) => (input === 'yes' || input === 'no');
 
 const isIntegerValid = (min, max) => (input) => {
   const numValue = Number(input);
@@ -82,13 +88,36 @@ async function addEmployee() {
   employee.id = getNextEmployeeID();
   employee.firstName = getInput('First Name: ', isStringInputValid);
   employee.lastName = getInput('Last Name: ', isStringInputValid);
-  const startDateYear = getInput('Employee Start Year (1990-2023): ', isIntegerValid(1990, 2023));
-  const startDateMonth = getInput('Employee Start Date Month (1-12): ', isIntegerValid(1, 12));
-  const startDateDay = getInput('Employee Start Date Day (1-31): ', isIntegerValid(1, 31));
-  employee.startDate = new Date(startDateYear, startDateMonth - 1, startDateDay);
-  employee.isActive = getInput('Is employee active (yes or no): ', isBooleanInputValid, (i) => (i === 'yes'));
-  employee.salaryUSD = getInput('Annual salary in USD: ', isIntegerValid(10000, 1000000));
-  employee.localCurrency = getInput('Local currency (3 letter code): ', isCurrencyCodeValid);
+  const startDateYear = getInput(
+    'Employee Start Year (1990-2023): ',
+    isIntegerValid(1990, 2023),
+  );
+  const startDateMonth = getInput(
+    'Employee Start Date Month (1-12): ',
+    isIntegerValid(1, 12),
+  );
+  const startDateDay = getInput(
+    'Employee Start Date Day (1-31): ',
+    isIntegerValid(1, 31),
+  );
+  employee.startDate = new Date(
+    startDateYear,
+    startDateMonth - 1,
+    startDateDay,
+  );
+  employee.isActive = getInput(
+    'Is employee active (yes or no): ',
+    isBooleanInputValid,
+    (i) => i === 'yes',
+  );
+  employee.salaryUSD = getInput(
+    'Annual salary in USD: ',
+    isIntegerValid(10000, 1000000),
+  );
+  employee.localCurrency = getInput(
+    'Local currency (3 letter code): ',
+    isCurrencyCodeValid,
+  );
 
   employees.push(employee);
   await writeData(employees); // this will allow the employee to remain in the list once added
@@ -111,7 +140,10 @@ function searchByName() {
   const firstNameSearch = getInput('First Name: ').toLowerCase();
   const lastNameSearch = getInput('Last Name: ').toLowerCase();
   const results = employees.filter((e) => {
-    if (firstNameSearch && !e.firstName.toLowerCase().includes(firstNameSearch)) {
+    if (
+      firstNameSearch
+			&& !e.firstName.toLowerCase().includes(firstNameSearch)
+    ) {
       return false;
     }
     if (lastNameSearch && !e.lastName.toLowerCase().includes(lastNameSearch)) {
@@ -121,7 +153,9 @@ function searchByName() {
   });
   results.forEach((e, idx) => {
     console.log('');
-    console.log(`Search Result ${idx + 1} -------------------------------------`);
+    console.log(
+      `Search Result ${idx + 1} -------------------------------------`,
+    );
     logEmployee(e);
   });
 }
@@ -157,8 +191,7 @@ const main = async () => {
 
 Promise.all([loadData(), getCurrencyConversionData()])
   .then((results) => {
-    employees = results[0];
-    currencyData = results[1];
+    [employees, currencyData] = results;
     return main();
   })
   .catch((err) => {
